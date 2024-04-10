@@ -1,11 +1,12 @@
 /* App.js */
 
 import React from "react";
+import SidebarMenu from "./Components/sidebarMenu";
 
 function App() {
   return (
     <div>
-      App
+      <SidebarMenu />
     </div>
   );
 }
