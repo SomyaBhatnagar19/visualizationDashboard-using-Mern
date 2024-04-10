@@ -1,0 +1,49 @@
+/* /Components/StyleSheets/sidebarMenu.css*/
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: #031425;
+    overflow-y: auto;
+    padding-top: 56px; /* Height of the navbar */
+    transition: width 0.3s;
+  }
+  
+  .sidebar.collapsed {
+    width: 56px; /* Collapsed width */
+  }
+  
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .toggle-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  
+  .main-content {
+    margin-left: 240px; 
+    transition: margin-left 0.3s;
+  }
+  
+  @media (max-width: 992px) {
+    .sidebar {
+      width: 56px; 
+    }
+  
+    .main-content {
+      margin-left: 56px; 
+    }
+  }
+  

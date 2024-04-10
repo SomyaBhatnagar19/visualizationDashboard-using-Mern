@@ -3,6 +3,9 @@
 import React, { useState } from "react";
 import { Row, Col, Button, Nav } from "react-bootstrap";
 
+// stylesheet
+import "../StyleSheets/sidebarMenu.css";
+
 function SidebarMenu() {
   const [collapsed, setCollapsed] = useState(false);
 
