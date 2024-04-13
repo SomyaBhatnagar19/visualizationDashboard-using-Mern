@@ -4,6 +4,8 @@ import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Header from "./component/dashboard/header";
 import SidebarMenu from "./component/dashboard/sidebarMenu";
+import IntensityChart from "./component/dashboard/intensityChart";
+
 import "./App.css";
 
 function App() {
@@ -12,11 +14,11 @@ function App() {
       <Header />
       {/* <Container fluid> */}
       <Row>
-        <Col md={3} >
+        <Col md={2} >
         <SidebarMenu /> 
         </Col>
         <Col md={9}>
-        Dashboard
+        <IntensityChart />
         </Col>
       </Row>
       {/* </Container> */}
