@@ -1,0 +1,31 @@
+.header {
+  background-color: rgb(116, 74, 155);
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
+/* .icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.serach-icon,
+.user-icon {
+  align-self: flex-end;
+  color: #fffdfd;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .serach-icon,
+  .user-icon {
+    margin: 0 10px;
+  }
+} */
