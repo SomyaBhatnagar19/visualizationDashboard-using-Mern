@@ -8,8 +8,12 @@ app.get('/', (req, res) => {
     res.send('Hello welcome to Server!');
 });
 
-//connecting to mongoDb
+//Connecting to mongoDb
 connectDB();
+
+// Using the data router
+const dataRouter = require('./router/dataRouter');
+app.use('/api', dataRouter);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
