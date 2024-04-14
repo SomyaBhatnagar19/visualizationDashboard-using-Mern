@@ -6,6 +6,7 @@ import LikelihoodChart from "./likelihoodChart";
 import RelevanceChart from "./relevanceChart";
 import CountryChart from "./countryChart";
 import TopicsChart from "./topicsChart";
+import RegionChart from "./regionChart";
 
 // import './CSS/dashboard.css';
 const Dashboard = () => {
@@ -42,9 +43,9 @@ const Dashboard = () => {
         <Col xs={12} md={6}>
         <TopicsChart data={data} />
         </Col>
-        {/* <Col xs={12} md={6}>
-          <RelevanceChart data={data} />
-        </Col> */}
+        <Col xs={12} md={6}>
+          <RegionChart data={data} />
+        </Col>
       </Row>
     </div>
   );
