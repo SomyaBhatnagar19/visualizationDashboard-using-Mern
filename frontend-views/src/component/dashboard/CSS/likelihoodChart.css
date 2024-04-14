@@ -1,0 +1,71 @@
+/* Apply styles to the chart container */
+.likelihood-chart {
+    margin: 20px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: auto; /* Set height to auto to maintain aspect ratio */
+    min-height: 300px; /* Set a minimum height for the chart */
+}
+
+/* Apply styles to the chart title */
+.chart-title {
+    margin-bottom: 1rem;
+}
+
+/* Apply styles to the legend */
+.apexcharts-legend {
+    font-size: 12px !important;
+    font-family: Arial, sans-serif !important;
+    position: absolute !important;
+    top: 0 !important;
+    right: 20px !important;
+}
+
+/* Apply styles to the legend markers */
+.apexcharts-legend .apexcharts-marker {
+    background-color: rgba(210, 205, 231, 0.7) !important;
+}
+
+/* Apply styles to the legend labels */
+.apexcharts-legend .apexcharts-legend-text {
+    color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Apply styles to the radar chart polygons */
+.apexcharts-radar-series polygon {
+    fill: rgba(185, 174, 234, 0.7) !important;
+}
+
+/* Apply styles to the radar chart axes and labels */
+.apexcharts-radar-yaxis text,
+.apexcharts-radar-xaxis text {
+    fill: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Apply styles to the radar chart gridlines */
+.apexcharts-radar-gridline {
+    stroke: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Apply styles to the radar chart axis ticks */
+.apexcharts-radar-yaxis .apexcharts-tick,
+.apexcharts-radar-xaxis .apexcharts-tick {
+    stroke: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Media query for small screens */
+@media only screen and (max-width: 767px) {
+    .likelihood-chart {
+      margin: 10px;
+      padding: 5px;
+    }
+  }
+  
+  /* Media query for medium screens */
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .likelihood-chart {
+      margin: 15px;
+      padding: 1px;
+    }
+  }
