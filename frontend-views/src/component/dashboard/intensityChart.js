@@ -1,43 +1,94 @@
-/* /frontend-views/src/component/dashboard/intensityChart.js */
+import React, { useState } from 'react';
+import { Card, Form } from 'react-bootstrap';
+import Chart from 'react-apexcharts';
 
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+const IntensityChart = ({ data }) => {
+  const sortedData = data.filter(item => item.start_year).slice(-50).reverse(); // Filter and get latest 50 data
 
-const IntensityChart = () => {
-  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState(sortedData);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:4000/api/getData');
-        setData(response.data);
-      } catch (error) {
-        console.error('Failed to fetch data: ', error);
+  const getColor = (value) => {
+    const colors = ['#7F00FF', '#F2B93B', '#FF8000', '#FF453A']; // Purple, Yellow, Orange, Red
+    const maxIntensity = Math.max(...filteredData.map(item => item.intensity));
+    
+    if (value === maxIntensity) {
+      return colors[3]; // Red for highest intensity
+    } else {
+      const threshold = maxIntensity / 4;
+      if (value < threshold) {
+        return colors[0];
+      } else if (value < threshold * 2) {
+        return colors[1];
+      } else if (value < threshold * 3) {
+        return colors[2];
+      } else {
+        return colors[3];
       }
-    };
-    fetchData();
-  }, []);
+    }
+  };
+
+  const chartData = filteredData.map(item => ({
+    x: item.start_year,
+    y: item.intensity,
+    fill: getColor(item.intensity),
+    sector: item.sector, // Include sector information
+  }));
+
+  const options = {
+    chart: {
+      type: 'bar',
+      toolbar: { show: false },
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false, // Make the bars vertical
+        barHeight: '100%', // Make the bars visible entirely
+      },
+    },
+    xaxis: {
+      categories: filteredData.map(item => item.start_year),
+      title: { text: 'Year' },
+      labels: {
+        rotate: -45,
+        style: {
+          fontSize: '12px',
+          fontFamily: 'Arial, sans-serif',
+        },
+      },
+    },
+    yaxis: {
+      title: { text: 'Intensity (%)' },
+      min: 0,
+      max: 100,
+      reversed: false, // Reverse the y-axis
+    },
+    tooltip: {
+      enabled: true, // Show tooltips on hover
+      formatter: function(val, { series, seriesIndex, dataPointIndex, w }) {
+        return `${val}% - Sector: ${w.config.series[seriesIndex].data[dataPointIndex].sector}`;
+      },
+    },
+  };
+
+  const handleFilterChange = (e) => {
+    const filterValue = e.target.value;
+    setFilteredData(
+      filterValue ?
+        sortedData.filter(item => item.start_year && item.start_year.toString().startsWith(filterValue)) :
+        sortedData
+    );
+  };
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <h2>Intensity Chart</h2>
-          <ResponsiveContainer width="100%" height={400}>
-            <LineChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="start_year" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="intensity" stroke="#8884d8" />
-            </LineChart>
-          </ResponsiveContainer>
-        </Col>
-      </Row>
-    </Container>
+    <Card style={{ margin: '20px', padding: '20px' }}>
+      <h3>Intensity Chart</h3>
+      <Form.Control
+        type="text"
+        placeholder="Filter by year"
+        onChange={handleFilterChange}
+      />
+      <Chart options={options} series={[{ data: chartData }]} type="bar" height={400} />
+    </Card>
   );
 };
 

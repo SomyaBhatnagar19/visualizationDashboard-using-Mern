@@ -1,8 +1,11 @@
 /* /backend/server.js */
 
 const express = require('express');
+const cors = require('cors');
 const connectDB = require('./util/database');
 const app = express();
+
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Hello welcome to Server!');
