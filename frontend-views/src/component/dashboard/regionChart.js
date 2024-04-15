@@ -37,7 +37,7 @@ const RegionChart = ({ data }) => {
   return (
     <Card style={{ boxShadow: '0 4px 6px rgba(0, 0, 0, 0.5)', margin: '10px' }}>
       <Card.Body>
-        <h2 style={{marginBottom: '1.8rem'}} >Region Distribution</h2>
+        <h2 style={{marginBottom: '1.6rem'}} >Region Distribution</h2>
         <Chart options={chartOptions} series={chartData.series} type="donut" height={400} />
       </Card.Body>
     </Card>

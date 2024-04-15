@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Nav, Button, Navbar, Image } from 'react-bootstrap';
+import { AiOutlineDashboard, AiOutlineCalendar, AiOutlineFile, AiOutlineBarChart, AiOutlineSetting, AiOutlineLogout } from 'react-icons/ai'; // Importing icons from react-icons
+import './CSS/sidebarMenu.css';
+import logo from "../assets/logo.png";
 
 const SidebarMenu = () => {
   const [expanded, setExpanded] = useState(false);
@@ -9,23 +12,23 @@ const SidebarMenu = () => {
   };
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" fixed="left" style={{ height: '100vh', flexDirection: 'column' }} expanded={expanded}>
-      <Navbar.Brand href="#" onClick={toggleExpanded}>Menu</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={toggleExpanded} />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="flex-column">
-          <Nav.Link href="#transfer">Transfer</Nav.Link>
-          <Nav.Link href="#dashboard">Dashboard</Nav.Link>
-          <Nav.Link href="#tasks">Tasks</Nav.Link>
-          <Nav.Link href="#users">Users</Nav.Link>
-          <Nav.Link href="#calendar">Calendar</Nav.Link>
-          <Nav.Link href="#files">Files</Nav.Link>
-          <Nav.Link href="#analytics">Analytics</Nav.Link>
-          <Nav.Link href="#settings">Settings</Nav.Link>
-          <Nav.Link href="#logout">Logout</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <div className={`sidebar ${expanded ? 'expanded' : ''}`}>
+      <Nav className="flex-column">
+        <Navbar.Brand href="#home">
+          <Image src={logo} alt="logo" className="logo" />
+        </Navbar.Brand>
+        <hr></hr>
+        <a href="#dashboard"><AiOutlineDashboard /> Dashboard</a>
+        <a href="#calendar"><AiOutlineCalendar /> Calendar</a>
+        <a href="#files"><AiOutlineFile /> Files</a>
+        <a href="#analytics"><AiOutlineBarChart /> Analytics</a>
+        <a href="#settings"><AiOutlineSetting /> Settings</a>
+        <a href="#logout"><AiOutlineLogout /> Logout</a>
+      </Nav>
+      <Button className="toggle-btn" onClick={toggleExpanded}>
+        {expanded ? '<' : '>'}
+      </Button>
+    </div>
   );
 };
 

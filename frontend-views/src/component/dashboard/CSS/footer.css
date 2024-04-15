@@ -1,0 +1,12 @@
+/* Footer styles */
+footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1000; /* Ensure the footer is above other content */
+  }
+  
